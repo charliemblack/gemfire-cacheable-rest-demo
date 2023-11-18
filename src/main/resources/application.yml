@@ -19,18 +19,22 @@ spring:
 ---
 spring:
   # everything that follows belongs to the dev environment
-  profiles: dev
   data:
     gemfire:
       pool:
         locators: localhost[10334]
+  config:
+    activate:
+      on-profile: dev
 
 ---
 
 spring:
   # everything that follows belongs to the k8s environment
-  profiles: k8s
   data:
     gemfire:
       pool:
         locators: tanzu-gemfire-locator-0.tanzu-gemfire-locator.gemfire-cluster.svc.cluster.local[10334],tanzu-gemfire-locator-1.tanzu-gemfire-locator.gemfire-cluster.svc.cluster.local[10334],tanzu-gemfire-locator-2.tanzu-gemfire-locator.gemfire-cluster.svc.cluster.local[10334]
+  config:
+    activate:
+      on-profile: k8s

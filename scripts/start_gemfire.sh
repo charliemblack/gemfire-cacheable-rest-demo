@@ -17,7 +17,7 @@ function waitForPort {
     done
 }
 
-DEFAULT_LOCATOR_MEMORY="--initial-heap=128m --max-heap=128m"
+DEFAULT_LOCATOR_MEMORY="--initial-heap=2g --max-heap=2g"
 
 DEFAULT_SERVER_MEMORY="--initial-heap=2g --max-heap=2g"
 
@@ -47,11 +47,11 @@ gfsh --e "start server  ${SERVER_OPTS} --name=server2 --dir=${APP_HOME}/data/ser
 
 wait
 
-wget https://repo1.maven.org/maven2/org/springframework/spring-context/5.2.10.RELEASE/spring-context-5.2.10.RELEASE.jar
+@wget https://repo1.maven.org/maven2/org/springframework/spring-context/5.2.10.RELEASE/spring-context-5.2.10.RELEASE.jar
 
 gfsh << ENDGFSH
 connect
    create region --name=test --type=PARTITION  --entry-time-to-live-expiration=60 --entry-time-to-live-expiration-action=destroy --enable-statistics=true
-   deploy --jar=spring-context-5.2.11.RELEASE.jar
+#   deploy --jar=spring-context-5.2.11.RELEASE.jar
 ENDGFSH
 
